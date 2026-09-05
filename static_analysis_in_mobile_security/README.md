@@ -50,3 +50,43 @@ The recovered flag will be stored in:
 ```text
 0-flag.txt
 
+
+## Task 1 - Communication Between Device and Backend
+
+The APK was decompiled using JADX and the application code was identified under:
+
+`com.holberton.task2`
+
+The application collects the following Android device information:
+
+- Device model
+- Device manufacturer
+- Android version
+- SDK version
+
+The values are stored in a map and formatted as JSON before being transmitted using OkHttp.
+
+The application builds an HTTP POST request using:
+
+- `OkHttpClient`
+- `RequestBody`
+- `Request.Builder`
+- `enqueue()` for asynchronous request handling
+
+The backend domain was obfuscated using two transformations.
+
+The hardcoded value:
+
+`DmVhMT9gLJyhpl5upzHhMTShM2Ilo3Im`
+
+is first decoded using ROT13:
+
+`QzIuZG9tYWlucy5hcmUuZGFuZ2Vyb3Vz`
+
+The resulting string is then Base64-decoded to:
+
+`C2.domains.are.dangerous`
+
+The application constructs the final URL by prepending `https://`.
+
+A security concern identified during analysis is the collection and transmission of device information to an obfuscated remote domain. Obfuscating a destination makes the application's network behavior less transparent and can make security review more difficult.
