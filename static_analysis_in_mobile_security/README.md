@@ -90,3 +90,28 @@ The resulting string is then Base64-decoded to:
 The application constructs the final URL by prepending `https://`.
 
 A security concern identified during analysis is the collection and transmission of device information to an obfuscated remote domain. Obfuscating a destination makes the application's network behavior less transparent and can make security review more difficult.
+
+## Task 2 - Reverse Engineering & Optimization Challenges
+
+The APK was analyzed using JADX and APKTool.
+
+The application package was identified as:
+
+`com.holberton.task3`
+
+JADX revealed a function named `FibonacciDecryptionScreen`, but the main implementation was not fully decompiled. APKTool was therefore used to inspect the Smali bytecode.
+
+The application contained the Base64 encoded ciphertext:
+
+`cVZaW1dDQllZTFdRW1xeUlBbX21CWFtHalRZXUJFRFhNX1ZcbllGQ15cUUNSRFpcVks=`
+
+The decryption process calls a Fibonacci computation with the value 150 and uses the resulting Fibonacci number as a repeating XOR key.
+
+Fibonacci(150) is:
+
+`9969216677189303386214405760200`
+
+Applying the XOR decryption with this key recovers the flag.
+
+The challenge also demonstrates an optimization problem. A naive recursive Fibonacci implementation performs repeated calculations and has exponential time complexity. Memoization or dynamic programming can reduce the computation to O(n) time.
+
