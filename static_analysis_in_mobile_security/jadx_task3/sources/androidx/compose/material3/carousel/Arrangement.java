@@ -1,0 +1,249 @@
+package androidx.compose.material3.carousel;
+
+import androidx.annotation.FloatRange;
+import kotlin.Metadata;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+
+/* JADX INFO: compiled from: Arrangement.kt */
+/* JADX INFO: loaded from: classes.dex */
+@Metadata(d1 = {"\u0000 \n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0010\u0007\n\u0002\b\r\n\u0002\u0010\u000b\n\u0002\b\u0002\b\u0000\u0018\u0000 \u00142\u00020\u0001:\u0001\u0014B=\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0005\u0012\u0006\u0010\u0006\u001a\u00020\u0003\u0012\u0006\u0010\u0007\u001a\u00020\u0005\u0012\u0006\u0010\b\u001a\u00020\u0003\u0012\u0006\u0010\t\u001a\u00020\u0005\u0012\u0006\u0010\n\u001a\u00020\u0003¢\u0006\u0002\u0010\u000bJ\u0010\u0010\u0010\u001a\u00020\u00052\u0006\u0010\u0011\u001a\u00020\u0005H\u0002J\b\u0010\u0012\u001a\u00020\u0013H\u0002R\u000e\u0010\n\u001a\u00020\u0003X\u0082\u0004¢\u0006\u0002\n\u0000R\u0011\u0010\t\u001a\u00020\u0005¢\u0006\b\n\u0000\u001a\u0004\b\f\u0010\rR\u000e\u0010\b\u001a\u00020\u0003X\u0082\u0004¢\u0006\u0002\n\u0000R\u0011\u0010\u0007\u001a\u00020\u0005¢\u0006\b\n\u0000\u001a\u0004\b\u000e\u0010\rR\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0003X\u0082\u0004¢\u0006\u0002\n\u0000R\u0011\u0010\u0004\u001a\u00020\u0005¢\u0006\b\n\u0000\u001a\u0004\b\u000f\u0010\r¨\u0006\u0015"}, d2 = {"Landroidx/compose/material3/carousel/Arrangement;", "", "priority", "", "smallSize", "", "smallCount", "mediumSize", "mediumCount", "largeSize", "largeCount", "(IFIFIFI)V", "getLargeSize", "()F", "getMediumSize", "getSmallSize", "cost", "targetLargeSize", "isValid", "", "Companion", "material3_release"}, k = 1, mv = {1, 8, 0}, xi = 48)
+public final class Arrangement {
+    public static final int $stable = 0;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+    private static final float MediumItemFlexPercentage = 0.1f;
+    private final int largeCount;
+    private final float largeSize;
+    private final int mediumCount;
+    private final float mediumSize;
+    private final int priority;
+    private final int smallCount;
+    private final float smallSize;
+
+    public Arrangement(int priority, float smallSize, int smallCount, float mediumSize, int mediumCount, float largeSize, int largeCount) {
+        this.priority = priority;
+        this.smallSize = smallSize;
+        this.smallCount = smallCount;
+        this.mediumSize = mediumSize;
+        this.mediumCount = mediumCount;
+        this.largeSize = largeSize;
+        this.largeCount = largeCount;
+    }
+
+    public final float getSmallSize() {
+        return this.smallSize;
+    }
+
+    public final float getMediumSize() {
+        return this.mediumSize;
+    }
+
+    public final float getLargeSize() {
+        return this.largeSize;
+    }
+
+    private final boolean isValid() {
+        return (this.largeCount <= 0 || this.smallCount <= 0 || this.mediumCount <= 0) ? this.largeCount <= 0 || this.smallCount <= 0 || this.largeSize > this.smallSize : this.largeSize > this.mediumSize && this.mediumSize > this.smallSize;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public final float cost(float targetLargeSize) {
+        if (!isValid()) {
+            return Float.MAX_VALUE;
+        }
+        return Math.abs(targetLargeSize - this.largeSize) * this.priority;
+    }
+
+    /* JADX INFO: compiled from: Arrangement.kt */
+    @Metadata(d1 = {"\u00002\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u0007\n\u0002\b\u0003\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0015\n\u0002\b\t\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002J0\u0010\u0005\u001a\u00020\u00042\u0006\u0010\u0006\u001a\u00020\u00042\u0006\u0010\u0007\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\u00042\u0006\u0010\n\u001a\u00020\b2\u0006\u0010\u000b\u001a\u00020\bH\u0002JH\u0010\f\u001a\u0004\u0018\u00010\r2\u0006\u0010\u0006\u001a\u00020\u00042\u0006\u0010\u000e\u001a\u00020\u00042\u0006\u0010\u000f\u001a\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0013\u001a\u00020\u00042\u0006\u0010\u0014\u001a\u00020\u00122\u0006\u0010\u0015\u001a\u00020\u00042\u0006\u0010\u0016\u001a\u00020\u0012JP\u0010\u0017\u001a\u00020\r2\u0006\u0010\u0018\u001a\u00020\b2\u0006\u0010\u0006\u001a\u00020\u00042\u0006\u0010\u0007\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\u00042\u0006\u0010\u000f\u001a\u00020\u00102\u0006\u0010\n\u001a\u00020\b2\u0006\u0010\u0019\u001a\u00020\u00042\u0006\u0010\u000b\u001a\u00020\b2\u0006\u0010\u001a\u001a\u00020\u0004H\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082T¢\u0006\u0002\n\u0000¨\u0006\u001b"}, d2 = {"Landroidx/compose/material3/carousel/Arrangement$Companion;", "", "()V", "MediumItemFlexPercentage", "", "calculateLargeSize", "availableSpace", "smallCount", "", "smallSize", "mediumCount", "largeCount", "findLowestCostArrangement", "Landroidx/compose/material3/carousel/Arrangement;", "targetSmallSize", "smallSizeRange", "Landroidx/annotation/FloatRange;", "smallCounts", "", "targetMediumSize", "mediumCounts", "targetLargeSize", "largeCounts", "fit", "priority", "mediumSize", "largeSize", "material3_release"}, k = 1, mv = {1, 8, 0}, xi = 48)
+    public static final class Companion {
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        private Companion() {
+        }
+
+        public final Arrangement findLowestCostArrangement(float availableSpace, float targetSmallSize, FloatRange smallSizeRange, int[] smallCounts, float targetMediumSize, int[] mediumCounts, float targetLargeSize, int[] largeCounts) {
+            Arrangement lowestCostArrangement = null;
+            int priority = 1;
+            int length = largeCounts.length;
+            int i = 0;
+            while (i < length) {
+                int largeCount = largeCounts[i];
+                int length2 = mediumCounts.length;
+                int i2 = 0;
+                while (i2 < length2) {
+                    int mediumCount = mediumCounts[i2];
+                    int length3 = smallCounts.length;
+                    Arrangement lowestCostArrangement2 = lowestCostArrangement;
+                    int priority2 = priority;
+                    int i3 = 0;
+                    while (i3 < length3) {
+                        int smallCount = smallCounts[i3];
+                        int i4 = i3;
+                        Arrangement lowestCostArrangement3 = lowestCostArrangement2;
+                        int i5 = length3;
+                        int i6 = i2;
+                        int i7 = length2;
+                        int i8 = i;
+                        Arrangement arrangement = fit(priority2, availableSpace, smallCount, targetSmallSize, smallSizeRange, mediumCount, targetMediumSize, largeCount, targetLargeSize);
+                        if (lowestCostArrangement3 == null || arrangement.cost(targetLargeSize) < lowestCostArrangement3.cost(targetLargeSize)) {
+                            if (arrangement.cost(targetLargeSize) == 0.0f) {
+                                return arrangement;
+                            }
+                            lowestCostArrangement2 = arrangement;
+                        } else {
+                            lowestCostArrangement2 = lowestCostArrangement3;
+                        }
+                        priority2++;
+                        i3 = i4 + 1;
+                        length3 = i5;
+                        i2 = i6;
+                        length2 = i7;
+                        i = i8;
+                    }
+                    i2++;
+                    lowestCostArrangement = lowestCostArrangement2;
+                    priority = priority2;
+                }
+                i++;
+            }
+            return lowestCostArrangement;
+        }
+
+        /* JADX WARN: Removed duplicated region for block: B:25:0x00a8  */
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+            To view partially-correct add '--show-bad-code' argument
+        */
+        private final androidx.compose.material3.carousel.Arrangement fit(int r19, float r20, int r21, float r22, androidx.annotation.FloatRange r23, int r24, float r25, int r26, float r27) {
+            /*
+                r18 = this;
+                r8 = r21
+                r9 = r24
+                r10 = r26
+                double r0 = r23.from()
+                float r0 = (float) r0
+                double r1 = r23.to()
+                float r1 = (float) r1
+                r11 = r22
+                float r0 = kotlin.ranges.RangesKt.coerceIn(r11, r0, r1)
+                r6 = r25
+                r7 = r27
+                float r1 = (float) r10
+                float r1 = r1 * r7
+                float r2 = (float) r9
+                float r2 = r2 * r6
+                float r1 = r1 + r2
+                float r2 = (float) r8
+                float r2 = r2 * r0
+                float r12 = r1 + r2
+                float r13 = r20 - r12
+                r14 = 0
+                if (r8 <= 0) goto L3c
+                int r1 = (r13 > r14 ? 1 : (r13 == r14 ? 0 : -1))
+                if (r1 <= 0) goto L3c
+            L2d:
+                float r1 = (float) r8
+                float r1 = r13 / r1
+                double r2 = r23.to()
+                float r2 = (float) r2
+                float r2 = r2 - r0
+                float r1 = java.lang.Math.min(r1, r2)
+                float r0 = r0 + r1
+                goto L51
+            L3c:
+                if (r8 <= 0) goto L51
+                int r1 = (r13 > r14 ? 1 : (r13 == r14 ? 0 : -1))
+                if (r1 >= 0) goto L51
+            L43:
+                float r1 = (float) r8
+                float r1 = r13 / r1
+                double r2 = r23.from()
+                float r2 = (float) r2
+                float r2 = r2 - r0
+                float r1 = java.lang.Math.max(r1, r2)
+                float r0 = r0 + r1
+            L51:
+                if (r8 <= 0) goto L55
+                r1 = r0
+                goto L56
+            L55:
+                r1 = r14
+            L56:
+                r15 = r1
+                r0 = r18
+                r1 = r20
+                r2 = r21
+                r3 = r15
+                r4 = r24
+                r5 = r26
+                float r0 = r0.calculateLargeSize(r1, r2, r3, r4, r5)
+                float r1 = r0 + r15
+                r2 = 1073741824(0x40000000, float:2.0)
+                float r1 = r1 / r2
+                if (r9 <= 0) goto La8
+                int r2 = (r0 > r27 ? 1 : (r0 == r27 ? 0 : -1))
+                if (r2 != 0) goto L76
+                r2 = 1
+                goto L77
+            L76:
+                r2 = 0
+            L77:
+                if (r2 != 0) goto La8
+                float r2 = r27 - r0
+                float r3 = (float) r10
+                float r2 = r2 * r3
+                r3 = 1036831949(0x3dcccccd, float:0.1)
+                float r3 = r3 * r1
+                float r4 = (float) r9
+                float r3 = r3 * r4
+                float r4 = java.lang.Math.abs(r2)
+                float r4 = java.lang.Math.min(r4, r3)
+                int r5 = (r2 > r14 ? 1 : (r2 == r14 ? 0 : -1))
+                if (r5 <= 0) goto L9c
+                float r5 = (float) r9
+                float r5 = r4 / r5
+                float r1 = r1 - r5
+                float r5 = (float) r10
+                float r5 = r4 / r5
+                float r0 = r0 + r5
+                r14 = r0
+                r16 = r1
+                goto Lab
+            L9c:
+                float r5 = (float) r9
+                float r5 = r4 / r5
+                float r1 = r1 + r5
+                float r5 = (float) r10
+                float r5 = r4 / r5
+                float r0 = r0 - r5
+                r14 = r0
+                r16 = r1
+                goto Lab
+            La8:
+                r14 = r0
+                r16 = r1
+            Lab:
+                androidx.compose.material3.carousel.Arrangement r17 = new androidx.compose.material3.carousel.Arrangement
+                r0 = r17
+                r1 = r19
+                r2 = r15
+                r3 = r21
+                r4 = r16
+                r5 = r24
+                r6 = r14
+                r7 = r26
+                r0.<init>(r1, r2, r3, r4, r5, r6, r7)
+                return r17
+            */
+            throw new UnsupportedOperationException("Method not decompiled: androidx.compose.material3.carousel.Arrangement.Companion.fit(int, float, int, float, androidx.annotation.FloatRange, int, float, int, float):androidx.compose.material3.carousel.Arrangement");
+        }
+
+        private final float calculateLargeSize(float availableSpace, int smallCount, float smallSize, int mediumCount, int largeCount) {
+            return (availableSpace - ((smallCount + (mediumCount / 2.0f)) * smallSize)) / (largeCount + (mediumCount / 2.0f));
+        }
+    }
+}
